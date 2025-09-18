@@ -1,0 +1,100 @@
+[
+  {
+    "model": "core.emprunteur",
+    "pk": 1,
+    "fields": {
+      "nom": "Alice",
+      "bloque": false
+    }
+  },
+  {
+    "model": "core.emprunteur",
+    "pk": 2,
+    "fields": {
+      "nom": "Paul",
+      "bloque": false
+    }
+  },
+  {
+    "model": "core.emprunteur",
+    "pk": 3,
+    "fields": {
+      "nom": "Charlie",
+      "bloque": false
+    }
+  },
+
+  {
+    "model": "core.livre",
+    "pk": 1,
+    "fields": {
+      "titre": "Le Seigneur des Anneaux",
+      "disponible": true,
+      "auteur": "J.R.R. Tolkien"
+    }
+  },
+  {
+    "model": "core.livre",
+    "pk": 2,
+    "fields": {
+      "titre": "1984",
+      "disponible": true,
+      "auteur": "George Orwell"
+    }
+  },
+
+  {
+    "model": "core.dvd",
+    "pk": 1,
+    "fields": {
+      "titre": "Inception",
+      "disponible": true,
+      "realisateur": "Christopher Nolan"
+    }
+  },
+  {
+    "model": "core.dvd",
+    "pk": 2,
+    "fields": {
+      "titre": "Matrix",
+      "disponible": true,
+      "realisateur": "Lana et Lilly Wachowski"
+    }
+  },
+
+  {
+    "model": "core.cd",
+    "pk": 1,
+    "fields": {
+      "titre": "The wall",
+      "disponible": true,
+      "artiste": "Pink Floyd"
+    }
+  },
+  {
+    "model": "core.cd",
+    "pk": 2,
+    "fields": {
+      "titre": "Back in Black",
+      "disponible": true,
+      "artiste": "AC/DC"
+    }
+  },
+
+  {
+    "model": "core.jeudeplateau",
+    "pk": 1,
+    "fields": {
+      "titre": "Catan",
+      "createur": "Klaus Teuber"
+    }
+  },
+  {
+    "model": "core.jeudeplateau",
+    "pk": 2,
+    "fields": {
+      "titre": "Risk",
+      "createur": "Albert Lamorisse"
+    }
+  }
+]

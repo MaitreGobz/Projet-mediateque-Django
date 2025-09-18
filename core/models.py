@@ -55,7 +55,7 @@ class Emprunteur(models.Model):
         return self.emprunt_set.filter(date_retour__isnull=True,
                                        date_emprunt__lte=timezone.now() - Emprunt.DUREE).exists()
 
-    def bloque(self):
+    def est_bloque(self):
         return self.bloque or self.a_un_retard()
 
 # Emprunts
@@ -102,14 +102,14 @@ class Emprunt(models.Model):
         # 1 seul média emprunter lors d'un emprunt
 
         medias = [self.livre, self.dvd, self.cd]
-        if sum(m is not null for m in medias) != 1:
+        if sum(m is not none for m in medias) != 1:
             raise ValidationError("Un emprunt doit concerner un seul média.")
 
         #Jeu de plateau non empruntable comme défini dans le modèle
 
         #L'emprunteur ne doit pas être bloqué
 
-        if self.emprunteur and self.emprunteur.bloque():
+        if self.emprunteur and self.emprunteur.est_bloque():
             raise ValidationError("Le membre est bloqué à cause d'un retard.")
 
         #Limite de 3 emprunts  en cours par membre
@@ -137,7 +137,7 @@ class Emprunt(models.Model):
             super().save(*args, **kwargs)
             # Marquer le média indisponible si l'emprunt vient d'être créé
             if self.date_retour is None:
-                media = self.media_obj()
+                media = self.media_object()
                 if media and media.disponible:
                     media.disponible = False
                     media.save(update_fields=["disponible"])
