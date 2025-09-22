@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des membres</title>
+</head>
+<body>
+    <h1>Liste des membres</h1>
+    <ul>
+        {% for e in emprunteurs %}
+        <li>
+          {{ e.nom }}{% if e.est_bloque %} (bloqué){% endif %}
+          — <a href="{% url 'staff:emprunteur_edit' e.pk %}">éditer</a>
+          — <a href="{% url 'staff:emprunteur_delete' e.pk %}">supprimer</a>
+        </li>
+        {% empty %}
+        <li>Aucun emprunteur</li>
+        {% endfor %}
+    </ul>
+    <p>
+      <a href="{% url 'staff:home' %}">Accueil</a> |
+      <a href="{% url 'staff:emprunteur_add' %}">Ajouter un membre</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ titre }}</title>
+</head>
+<body>
+    <h1>Créer un nouvel emprunt</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="emprunteur">Emprunteur :</label>
+            <select name="emprunteur">
+                {% for emprunteur in emprunteurs %}
+                    <option value="{{ emprunteur.id }}">{{ emprunteur.nom }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label for="livre">Livre :</label>
+            <select name="livre">
+                <option value="">---</option>
+                {% for livre in livres %}
+                    <option value="{{ livre.id }}">{{ livre.titre }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label for="dvd">DVD :</label>
+            <select name="dvd">
+                <option value="">---</option>
+                {% for dvd in dvds %}
+                    <option value="{{ dvd.id }}">{{ dvd.titre }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label for="cd">CD :</label>
+            <select name="cd">
+                <option value="">---</option>
+                {% for cd in cds %}
+                    <option value="{{ cd.id }}">{{ cd.titre }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <button>Enregistrer</button>
+    </form>
+    <p><a href="{% url 'staff:emprunt_list' %}">Retour à la liste</a></p>
+</body>
+</html>

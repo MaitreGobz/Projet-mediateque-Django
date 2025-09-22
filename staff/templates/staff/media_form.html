@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ titre }}</title>
+</head>
+<body>
+    <h1>{{ titre }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="titre">Titre :</label>
+            <input type="text" id="titre" name="titre">
+        </p>
+        {% if type == "livre" %}
+            <p>
+                <label for="auteur">Auteur :</label>
+                <input type="text" id="auteur" name="auteur">
+            </p>
+        {% elif type == "dvd" %}
+            <p>
+                <label for="realisateur">Réalisateur :</label>
+                <input type="text" id="realisateur" name="realisateur">
+            </p>
+        {% elif type == "cd" %}
+            <p>
+                <label for="artiste">Artiste :</label>
+                <input type="text" id="artiste" name="artiste">
+            </p>
+        {% elif type == "jeu" %}
+            <p>
+                <label for="createur">Créateur :</label>
+                <input type="text" id="createur" name="createur">
+            </p>
+        {% endif %} 
+      <button>Enregistrer</button>
+    </form>
+    <p><a href="{% url 'staff:media_list_staff' %}">Retour à la liste</a></p>
+</body>
+</html>

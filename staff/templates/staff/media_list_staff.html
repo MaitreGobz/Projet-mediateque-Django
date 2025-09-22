@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des médias</title>
+</head>
+<body>
+    <h1>Liste des médias</h1>
+    <h2>Ajouter un média</h2>
+    <ul>
+        <a href="{% url 'staff:media_add_livre' %}">Ajouter un livre</a><br>
+        <a href="{% url 'staff:media_add_dvd' %}">Ajouter un dvd</a><br>
+        <a href="{% url 'staff:media_add_cd' %}">Ajouter un cd</a><br>
+        <a href="{% url 'staff:media_add_jeu' %}">Ajouter un jeu de plateau</a>
+    </ul>
+    <h2>Livres</h2>
+    {% for livre in livres %}
+    <ul>
+        <li>
+            {{ livre.titre }} - {{ livre.auteur }}
+            {% if livre.disponible %}
+            <span>- Disponible</span>
+            {% else %}
+            <span>- Indisponible</span>
+            {% endif %}
+        </li>
+    </ul>
+    {% endfor %}
+    <h2>DVD</h2>
+    {% for dvd in dvds %}
+    <ul>
+        <li>
+            {{ dvd.titre }} - {{ dvd.realisateur }}
+            {% if dvd.disponible %}
+            <span>- Disponible</span>
+            {% else %}
+            <span>- Indisponible</span>
+            {% endif %}
+        </li>
+    </ul>
+    {% endfor %}
+    <h2>CD</h2>
+    {% for cd in cds %}
+    <ul>
+        <li>
+            {{ cd.titre }} - {{ cd.artiste }}
+            {% if cd.disponible %}
+            <span>- Disponible</span>
+            {% else %}
+            <span>- Indisponible</span>
+            {% endif %}
+        </li>
+    </ul>
+    {% endfor %}
+    <h2>Jeux de plateau</h2>
+    {% for jeudeplateau in jeudeplateaus %}
+    <ul>
+        <li>{{ jeudeplateau.titre }} - {{ jeudeplateau.createur }}</li>
+    </ul>
+    {% endfor %}
+    <p><a href="{% url 'staff:home' %}">Accueil</a></p>
+</body>
+</html>

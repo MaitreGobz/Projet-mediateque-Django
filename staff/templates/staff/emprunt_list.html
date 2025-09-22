@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des emprunts</title>
+</head>
+<body>
+    <h1>Gestion des emprunts</h1>
+    <table>
+        <caption>Liste des emprunts en cours</caption>
+        <tr>
+            <th>Emprunteur</th>
+            <th>Média</th>
+            <th>Début</th>
+            <th>Retour</th>
+            <th>Action</th>
+        </tr>
+        {% for emprunt in emprunts %}
+            <tr>
+                <td>{{ emprunt.emprunteur }}</td>
+                <td>{{ emprunt.livre|default:emprunt.dvd|default:emprunt.cd }}</td>
+                <td>{{ emprunt.date_emprunt }}</td>
+                <td>{% if emprunt.date_retour %}{{ emprunt.date_retour }}{% else %}—{% endif %}</td>
+                <td>
+                    {% if not emprunt.date_retour %}
+                        <a href="{% url 'staff:emprunt_retour' emprunt.pk %}">Marquer retour</a>
+                    {% else %}✔{% endif %}
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5">Aucun emprunt</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p>
+        <a href="{% url 'staff:home' %}">Accueil</a>
+        <a href="{% url 'staff:emprunt_add' %}">Nouvel emprunt</a>
+    </p>
+</body>
+</html>
