@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Supprimer un membre</title>
+</head>
+<body>
+    <h1>{{ titre }}</h1>
+    <h1>Supprimer cet emprunteur ?</h1>
+<p>Confirmer la suppression de <strong>{{ emprunteur.nom }}</strong> ?</p>
+<form method="post">{% csrf_token %}<button>Confirmer</button></form>
+<p><a href="{% url 'staff:emprunteur_list' %}">Annuler</a></p>
+</body>
+</html>

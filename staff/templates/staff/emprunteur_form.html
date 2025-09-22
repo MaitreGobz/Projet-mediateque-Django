@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ titre }}</title>
+</head>
+<body>
+    <h1>{{ titre }}</h1>
+    <form method="post">
+      {% csrf_token %}
+      <p>
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" value="{{ emprunteur.nom|default:'' }}">
+      </p>
+      <p>
+        <label for="bloque">Bloqué :</label>
+        <input type="checkbox" id="bloque" name="bloque" {% if emprunteur.bloque %}checked{% endif %}>
+      </p>
+      <button>Enregistrer</button>
+    </form>
+    <p><a href="{% url 'staff:emprunteur_list' %}">Retour à la liste</a></p>
+</body>
+</html>

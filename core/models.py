@@ -102,7 +102,7 @@ class Emprunt(models.Model):
         # 1 seul média emprunter lors d'un emprunt
 
         medias = [self.livre, self.dvd, self.cd]
-        if sum(m is not none for m in medias) != 1:
+        if sum(m is not None for m in medias) != 1:
             raise ValidationError("Un emprunt doit concerner un seul média.")
 
         #Jeu de plateau non empruntable comme défini dans le modèle
@@ -121,8 +121,9 @@ class Emprunt(models.Model):
         #Média doit être disponible
 
         media = self.media_object()
-        if media and not media.disponible:
-            raise ValidationError("Le média n'est pas disponible.")
+        if self.date_retour is None:
+           if media and not media.disponible:
+              raise ValidationError("Le média n'est pas disponible.")
 
 
     def save(self, *args, **kwargs):
@@ -130,13 +131,13 @@ class Emprunt(models.Model):
         """
         On force la validation (full_clean) et on met à jour la disponibilité du média.
         """
-
+        creating = self._state.adding
         self.full_clean()
 
         with transaction.atomic():
             super().save(*args, **kwargs)
             # Marquer le média indisponible si l'emprunt vient d'être créé
-            if self.date_retour is None:
+            if creating and self.date_retour is None:
                 media = self.media_object()
                 if media and media.disponible:
                     media.disponible = False
@@ -149,13 +150,12 @@ class Emprunt(models.Model):
         Enregistre le retour du média : date_retour + disponibilité.
         """
         if self.date_retour is not None:
-            return  # déjà retourné
+            return
 
         with transaction.atomic():
             self.date_retour = timezone.now()
-            self.save(update_fields=["date_retour"])
-
-            media = self.media_obj()
+            super().save(update_fields=["date_retour"])
+            media = self.media_object()
             if media:
                 media.disponible = True
                 media.save(update_fields=["disponible"])

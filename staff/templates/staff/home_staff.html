@@ -2,9 +2,15 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Accueil bibliotéquaire</title>
+    <title>Accueil bibliotécaire</title>
 </head>
 <body>
-    <h1>Accueil du Staff</h1>
+    <h1>Espace bibliotécaires</h1>
+    <ul>
+        <li><a href="{% url 'staff:emprunteur_list' %}">Gérer les membres</a></li>
+        <li><a href="{% url 'staff:media_list_staff' %}">Gérer les médias</a></li>
+        <li><a href="{% url 'staff:emprunt_list' %}">Gérer les emprunts</a></li>
+    </ul>
+    <p><a href="{% url 'core:home' %}">Se déconnecter</a></p>
 </body>
 </html>
