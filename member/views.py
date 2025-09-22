@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from core.models import Livre, Dvd, Cd, JeuDePlateau
 
 
-@login_required(login_url="account:login")
+@login_required(login_url="accounts:login")
 def medias_list(request):
     ctx = {
         "livres": Livre.objects.order_by("titre"),

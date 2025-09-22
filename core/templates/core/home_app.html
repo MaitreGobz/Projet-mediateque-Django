@@ -9,11 +9,8 @@
   <p>Pour accéder aux services veuillez vous connecter</p>
   <p>Accédez à votre espace :</p>
   <p>
-    <a href="#">Espace membre (connexion)</a> |
-    <a href="#">Espace staff (connexion)</a>
-  </p>
-  <p>
-    <a href="{% url 'member:medias_list' %}">Voir les médias (si déjà connecté)</a>
+    <a href="{% url 'accounts:login' %}">Espace membre (connexion)</a> |
+    <a href="{% url 'accounts:staff_login' %}">Espace staff (connexion)</a>
   </p>
 </body>
 </html>

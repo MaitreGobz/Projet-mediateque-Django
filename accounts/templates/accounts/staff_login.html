@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion bibliotécaire</title>
+</head>
+<body>
+    <h1>Connexion staff</h1>
+    {% if form.errors %}
+        <p style="color: red;">Nom d'utilisateur ou mot de passe incorrect.</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Se connecter</button>
+    </form>
+    <p><a href="{% url 'core:home' %}">Retour accueil</a></p>
+</body>
+</html>

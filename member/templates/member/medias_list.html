@@ -30,6 +30,9 @@
         <li>{{ jeudeplateau.titre }} - {{ jeudeplateau.createur }}</li>
     </ul>
     {% endfor %}
-    <p><a href="{% url 'core:home' %}">Se déconnecter</a></p>
+    <form action="{% url 'accounts:logout' %}" method="post" style="display:inline">
+        {% csrf_token %}
+        <button type="submit">Se déconnecter</button>
+    </form>
 </body>
 </html>
