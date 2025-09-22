@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
     'staff.apps.StaffConfig',
-    'member.apps.MemberConfig'
+    'member.apps.MemberConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+LOGIN_URL = "accounts:login"
+LOGIN_REDIRECT_URL = "public:medias_list"
+LOGOUT_REDIRECT_URL = "core:home"
 
 ROOT_URLCONF = 'mediatheque.urls'
 

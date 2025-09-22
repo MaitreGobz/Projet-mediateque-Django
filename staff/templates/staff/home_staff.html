@@ -11,6 +11,9 @@
         <li><a href="{% url 'staff:media_list_staff' %}">Gérer les médias</a></li>
         <li><a href="{% url 'staff:emprunt_list' %}">Gérer les emprunts</a></li>
     </ul>
-    <p><a href="{% url 'core:home' %}">Se déconnecter</a></p>
+    <form action="{% url 'accounts:logout' %}" method="post" style="display:inline">
+        {% csrf_token %}
+        <button type="submit">Se déconnecter</button>
+    </form>
 </body>
 </html>
